@@ -46,7 +46,7 @@ test {
 }
 
 
-bootJar {
+bootJar { //boot로 실행할거기 때문에 true로 설정
     enabled = true
 }
 

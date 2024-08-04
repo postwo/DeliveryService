@@ -14,10 +14,10 @@ allprojects { //내 밑의 있는 프로젝트들은 모두 나를 따라라
 }
 
 // 루트는 소스파일이 없기 때문에 false로 설정
-bootJar{
+bootJar{  //snapshot.jar 파일 생성 //root 모듈에 main 클래스가 없기 때문에 필요한 코드
 	enabled = false
 }
 
-jar{
+jar{ //snapshot -plan.jar 생성약
 	enabled = false
 }
