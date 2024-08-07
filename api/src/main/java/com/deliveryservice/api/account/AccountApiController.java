@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @RestController
 @RequestMapping("/api/account")
 @RequiredArgsConstructor
-public class AccountController {
+public class AccountApiController {
 
     private final AccountRepository accountRepository;
 
