@@ -7,3 +7,6 @@ enabled = true,false
 jar {
 enabled = true,false
 }
+
+# swagger 접속 경로 
+http://localhost:8080/swagger-ui/index.html
