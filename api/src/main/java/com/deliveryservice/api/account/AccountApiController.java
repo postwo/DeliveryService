@@ -2,6 +2,7 @@ package com.deliveryservice.api.account;
 
 import com.deliveryservice.api.account.model.AccountMeResponse;
 import com.deliveryservice.api.common.api.Api;
+import com.deliveryservice.api.common.error.UserErrorCode;
 import com.deliveryservice.db.account.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +26,7 @@ public class AccountApiController {
 
 
     @GetMapping("/me")
-    public Api<AccountMeResponse> me (){
+    public Api<Object> me (){
 
         var response = AccountMeResponse.builder()
                 .name("홍길동")
@@ -33,7 +34,7 @@ public class AccountApiController {
                 .registeredAt(LocalDateTime.now())
                 .build();
 
-        return Api.OK(response);
+        return Api.ERROR(UserErrorCode.USER_NOT_FOUND,"홍길동 이라는 사용자 없음");
     }
 
 }
