@@ -32,7 +32,9 @@ public class LoggerFilter implements Filter {
         var req = new ContentCachingRequestWrapper((HttpServletRequest) servletRequest);
         var res = new ContentCachingResponseWrapper((HttpServletResponse) servletResponse);
 
-        filterChain.doFilter(req,res);
+        log.info("INIT URI{}",req.getRequestURI());
+
+        filterChain.doFilter(req,res); //여기를 기준으로 로그를 찍어준다 밑에부분은 dofilter를 나가기전에 찍어서 늦게 찍히는거고 위에는 dofilter보다 앞에있어서 먼저 찍힌다
 
         //request 정보
         var headerNames = req.getHeaderNames();
