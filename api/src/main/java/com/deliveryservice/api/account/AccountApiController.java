@@ -2,7 +2,6 @@ package com.deliveryservice.api.account;
 
 import com.deliveryservice.api.account.model.AccountMeResponse;
 import com.deliveryservice.api.common.api.Api;
-import com.deliveryservice.api.common.error.UserErrorCode;
 import com.deliveryservice.db.account.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,8 +24,21 @@ public class AccountApiController {
 //    }
 
 
+//    @GetMapping("/me")
+//    public Api<Object> me (){
+//
+//        var response = AccountMeResponse.builder()
+//                .name("홍길동")
+//                .email("codo7717@naver.com")
+//                .registeredAt(LocalDateTime.now())
+//                .build();
+//
+//        return Api.ERROR(UserErrorCode.USER_NOT_FOUND,"홍길동 이라는 사용자 없음");
+//    }
+
+    //컨트롤러,서비스에서는 항상 성공처리만 바라보게 하고 여기서 에러가 발생하는거는 ExcetpionHandler에서 처리해준다
     @GetMapping("/me")
-    public Api<Object> me (){
+    public Api<AccountMeResponse> me (){
 
         var response = AccountMeResponse.builder()
                 .name("홍길동")
@@ -34,7 +46,12 @@ public class AccountApiController {
                 .registeredAt(LocalDateTime.now())
                 .build();
 
-        return Api.ERROR(UserErrorCode.USER_NOT_FOUND,"홍길동 이라는 사용자 없음");
+        var str = "안녕하세요";
+        var age =0;
+        Integer.parseInt(str);
+
+        return Api.OK(response);
     }
+
 
 }
