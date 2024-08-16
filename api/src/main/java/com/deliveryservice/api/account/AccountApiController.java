@@ -2,6 +2,8 @@ package com.deliveryservice.api.account;
 
 import com.deliveryservice.api.account.model.AccountMeResponse;
 import com.deliveryservice.api.common.api.Api;
+import com.deliveryservice.api.common.error.ErrorCode;
+import com.deliveryservice.api.common.exception.ApiException;
 import com.deliveryservice.db.account.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,6 +50,11 @@ public class AccountApiController {
 
         var str = "안녕하세요";
         var age =0;
+        try{
+            Integer.parseInt(str);
+        }catch (Exception e){
+            throw new ApiException(ErrorCode.SERVER_ERROR,e, "사용자 me 호출시 에러 발생");
+        }
         Integer.parseInt(str);
 
         return Api.OK(response);
