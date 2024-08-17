@@ -45,6 +45,11 @@ dependencies {
     //swagger ui == 이방식은 스프링부트 2 버전만 가능
 //    implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.7.0'
 
+    // jwt
+    implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.5'
+    runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.5'
+    runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.5'
+
 }
 
 test {
