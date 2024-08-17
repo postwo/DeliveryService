@@ -23,7 +23,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) { //세가지 주소 빼고는 다검증을 할거다
         registry.addInterceptor(authorizationInterceptor)
-                .excludePathPatterns(OPEN_API)
+                .excludePathPatterns(OPEN_API) //인증 x 로그인이 안되어도 사용가능
                 .excludePathPatterns(DEFAULT_EXCLUDE)
                 .excludePathPatterns(SWAGGER)
         ;
