@@ -33,4 +33,5 @@ public class UserOpenApiController {
         var response = userBusiness.login(request.getBody());
         return Api.OK(response);
     }
+
 }
