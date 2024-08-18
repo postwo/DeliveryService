@@ -1,6 +1,7 @@
 package com.deliveryservice.api.domain.user.controller;
 
 import com.deliveryservice.api.common.api.Api;
+import com.deliveryservice.api.domain.token.controller.model.TokenResponse;
 import com.deliveryservice.api.domain.user.businiess.UserBusiness;
 import com.deliveryservice.api.domain.user.controller.model.UserLoginRequest;
 import com.deliveryservice.api.domain.user.controller.model.UserRegisterRequest;
@@ -28,7 +29,7 @@ public class UserOpenApiController {
 
     // 로그인
     @PostMapping("/login")
-    public Api<UserResponse> login(@Valid @RequestBody Api<UserLoginRequest> request){
+    public Api<TokenResponse> login(@Valid @RequestBody Api<UserLoginRequest> request){
         var response = userBusiness.login(request.getBody());
         return Api.OK(response);
     }
