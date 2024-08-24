@@ -1,6 +1,5 @@
 package com.deliveryservice.db.storemenu.enums;
 
-
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -11,4 +10,6 @@ public enum StoreMenuStatus {
     ;
 
     private String description;
+
+
 }

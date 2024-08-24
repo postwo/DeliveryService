@@ -25,4 +25,7 @@ public enum StoreCategory {
 
     private String display;
     private String description;
+
+
+
 }
