@@ -7,7 +7,9 @@ import com.deliveryservice.api.domain.storemenu.controller.model.StoreMenuRegist
 import com.deliveryservice.api.domain.storemenu.controller.model.StoreMenuResponse;
 import com.deliveryservice.db.storemenu.StoreMenuEntity;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Converter
 public class StoreMenuConverter {
@@ -34,9 +36,9 @@ public class StoreMenuConverter {
     //서버에서 사용 중인 엔티티 객체를 프론트엔드에 전달할 응답 객체
     public StoreMenuResponse toResponse(
             StoreMenuEntity storeMenuEntity
-    ){
+    ) {
         return Optional.ofNullable(storeMenuEntity)
-                .map(it ->{
+                .map(it -> {
                     return StoreMenuResponse.builder()
                             .id(storeMenuEntity.getId())
                             .name(storeMenuEntity.getName())
@@ -49,7 +51,15 @@ public class StoreMenuConverter {
                             .build()
                             ;
                 })
-                .orElseThrow(()-> new ApiException(ErrorCode.NULL_POINT));
+                .orElseThrow(() -> new ApiException(ErrorCode.NULL_POINT));
+    }
+
+    public List<StoreMenuResponse> toResponse(
+            List<StoreMenuEntity> list
+    ){
+        return list.stream()
+                .map(it -> toResponse(it))
+                .collect(Collectors.toList());
     }
 
 

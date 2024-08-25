@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserOrderDetailResponse {
+public class UserOrderDetailResponse { //상세한 내용
 
     private UserOrderResponse userOrderResponse;
     private StoreResponse storeResponse;

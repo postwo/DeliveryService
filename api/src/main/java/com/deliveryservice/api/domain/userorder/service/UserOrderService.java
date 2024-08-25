@@ -19,6 +19,16 @@ public class UserOrderService {
 
     private final UserOrderRepository userOrderRepository;
 
+
+    public UserOrderEntity getUserOrderWithOutStatusWithThrow(
+            Long id,
+            Long userId
+    ){
+        return userOrderRepository.findAllByIdAndUserId(id, userId)
+                .orElseThrow(()-> new ApiException(ErrorCode.NULL_POINT));
+    }
+
+
     public UserOrderEntity getUserOrderWithThrow(
             Long id,
             Long userId
@@ -27,13 +37,16 @@ public class UserOrderService {
                 .orElseThrow(()-> new ApiException(ErrorCode.NULL_POINT));
     }
 
+
     public List<UserOrderEntity> getUserOrderList(Long userId){
         return userOrderRepository.findAllByUserIdAndStatusOrderByIdDesc(userId, UserOrderStatus.REGISTERED);
     }
 
+
     public List<UserOrderEntity> getUserOrderList(Long userId, List<UserOrderStatus> statusList){
         return userOrderRepository.findAllByUserIdAndStatusInOrderByIdDesc(userId, statusList);
     }
+
 
     // 현재 진행중인 내역
     public List<UserOrderEntity> current(Long userId){
@@ -104,4 +117,6 @@ public class UserOrderService {
         userOrderEntity.setReceivedAt(LocalDateTime.now());
         return setStatus(userOrderEntity, UserOrderStatus.RECEIVE);
     }
+
+
 }
