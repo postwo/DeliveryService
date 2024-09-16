@@ -1,0 +1,65 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot'
+    id 'io.spring.dependency-management'
+}
+
+group = 'com.deliveryservice' //이게 패키지명 이다
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+
+
+//이 설정은 필수는 아니지만, Lombok과 같은 라이브러리를 사용하는
+// 프로젝트에서 컴파일 타임에 애노테이션 프로세서를 확실히 적용하기 위해 권장됩니다.
+// 이 설정을 통해 Lombok의 애노테이션 프로세서가 올바르게 인식되고 처리되도록 할 수 있습니다.
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    implementation project(":db")//부모 아래에 있는 프로젝트 중에서 api가 db를 가져다 쓰겠다는거다
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // jpa
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    //swagger ui == 스프링 3.0부터는 이 의존성을 주입해야 동작을 한다
+    //https://colabear754.tistory.com/130 여기 블로그 참고 하면된다 == spring boot 버전마다 의존성 주입방법이 다르다
+    implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.2.0'
+
+
+    //swagger ui == 이방식은 스프링부트 2 버전만 가능
+//    implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.7.0'
+
+
+
+}
+
+test {
+    useJUnitPlatform()
+}
+
+
+bootJar { //boot로 실행할거기 때문에 true로 설정
+    enabled = true
+}
+
+jar {
+    enabled = false
+}
