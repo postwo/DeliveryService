@@ -1,0 +1,10 @@
+version: '3.7'
+services:
+  rabbitmq:
+    image: rabbitmq:latest
+    ports:
+      - "5672:5672" # rabbit amqp port == 오른쪽에 있는게 외부 포트이다  그니까 결론적으로 왼쪽 포트로 오른쪽 외부 포트를 연결한다는 뜻이다 (RabbitMQ 클라이언트 연결용)
+      - "15672:15672" # manage port (RabbitMQ 관리 콘솔용)
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin       # 기본사용자 이름
+      - RABBITMQ_DEFAULT_PASS=admin123!@# # 기본사용자 비밀번호
