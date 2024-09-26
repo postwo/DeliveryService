@@ -9,6 +9,9 @@
 
 <!-- 사용자의 이메일을 출력 -->
 <h1 th:text="${#authentication.name}"></h1><br>
+<h1 th:text="${#authentication.principal.storeName}"></h1> </br>
+<h1 th:text="${#authentication.principal.role}"></h1> </br>
 
+<h1 th:text="${#authentication}"></h1> </br>
 </body>
 </html>

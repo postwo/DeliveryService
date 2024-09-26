@@ -44,7 +44,7 @@ public class UserSession implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(this.role.toString()));
+        return List.of(new SimpleGrantedAuthority(this.role.toString())); //문자로 권한을 넘긴다
     }
 
     @Override
@@ -58,12 +58,12 @@ public class UserSession implements UserDetails {
     }
 
     @Override
-    public boolean isAccountNonExpired() {
+    public boolean isAccountNonExpired() { //만료가 되었나 확인
         return this.status == StoreUserStatus.REGISTERED;
     }
 
     @Override
-    public boolean isAccountNonLocked() {
+    public boolean isAccountNonLocked() { //REGISTERED 잠긴 상태가 아니라는 뜻이다
         return this.status == StoreUserStatus.REGISTERED;
     }
 

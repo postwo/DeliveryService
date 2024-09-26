@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 public class AuthorizationService implements UserDetailsService {
 
     private final StoreUserService storeUserService;
+
     private final StoreRepository storeRepository;
 
 
@@ -31,6 +32,7 @@ public class AuthorizationService implements UserDetailsService {
         return storeUserEntity.map(it ->{
 
                     var userSession = UserSession.builder()
+                            //user
                             .userId(it.getId())
                             .email(it.getEmail())
                             .password(it.getPassword())
@@ -40,6 +42,7 @@ public class AuthorizationService implements UserDetailsService {
                             .lastLoginAt(it.getLastLoginAt())
                             .unregisteredAt(it.getUnregisteredAt())
 
+                            //store
                             .storeId(storeEntity.get().getId())
                             .storeName(storeEntity.get().getName())
                             .build();
