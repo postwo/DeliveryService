@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot'
+    id 'io.spring.dependency-management'
+}
+
+group = 'com.deliveryservice' //이게 패키지명 이다
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+
+
+//이 설정은 필수는 아니지만, Lombok과 같은 라이브러리를 사용하는
+// 프로젝트에서 컴파일 타임에 애노테이션 프로세서를 확실히 적용하기 위해 권장됩니다.
+// 이 설정을 통해 Lombok의 애노테이션 프로세서가 올바르게 인식되고 처리되도록 할 수 있습니다.
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    compileOnly 'org.projectlombok:lombok:1.18.26'
+    annotationProcessor 'org.projectlombok:lombok:1.18.26'
+
+//    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+//    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jar {
+    enabled = true
+}
