@@ -3,6 +3,13 @@ server:
     name: store-admin
 
 spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: ${user}
+    password: ${userpw}
+
+
   jpa:
     show-sql: true
     properties:
@@ -10,6 +17,7 @@ spring:
       dialect: org.hibernate.dialect.MySQL8Dialect
     hibernate:
       ddl-auto: validate
+
   datasource:
     url: jdbc:mysql://localhost:3307/${data}?useSSL=false&useUnicode=true&allowPublicKeyRetrieval=true
     driver-class-name: com.mysql.cj.jdbc.Driver
