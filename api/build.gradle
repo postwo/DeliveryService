@@ -27,6 +27,7 @@ repositories {
 dependencies {
 
     implementation project(":db")//부모 아래에 있는 프로젝트 중에서 api가 db를 가져다 쓰겠다는거다
+    implementation project(":common")
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'

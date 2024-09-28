@@ -10,6 +10,7 @@ import com.deliveryservice.api.domain.userorder.controller.model.UserOrderDetail
 import com.deliveryservice.api.domain.userorder.controller.model.UserOrderRequest;
 import com.deliveryservice.api.domain.userorder.controller.model.UserOrderResponse;
 import com.deliveryservice.api.domain.userorder.converter.UserOrderConverter;
+import com.deliveryservice.api.domain.userorder.producer.UserOrderProducer;
 import com.deliveryservice.api.domain.userorder.service.UserOrderService;
 import com.deliveryservice.api.domain.userordermenu.converter.UserOrderMenuConverter;
 import com.deliveryservice.api.domain.userordermenu.service.UserOrderMenuService;
@@ -34,6 +35,8 @@ public class UserOrderBusiness {
 
     private final StoreService storeService;
     private final StoreConverter storeConverter;
+
+    private final UserOrderProducer userOrderProducer;
 
     //1. 사용자 ,메뉴 id
     //2. userOrder 생성
@@ -64,6 +67,8 @@ public class UserOrderBusiness {
             userOrderMenuService.order(it);
         });
 
+        // 비동기로 가맹점에 주문 알리기
+        userOrderProducer.sendOrder(newUserOrderEntity);
 
         // response 로 변경
         return userOrderConverter.toResponse(newUserOrderEntity);
