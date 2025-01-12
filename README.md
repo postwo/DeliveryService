@@ -22,3 +22,6 @@ http://localhost:8080/swagger-ui/index.html
 - 일단 로그인을 먼저 요청후 그다음에 토큰값을 복사해서
 
 - modheader에다가 토큰값을 넣으면 적용된다
+
+
+sse를 통한 사용자 주문 push 알림 개발하기-2 부터 들으면 된다.
